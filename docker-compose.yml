@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile   # ルートの Dockerfile を使う
+    ports:
+      - "3000:3000"  # Node.js
+      - "5001:5000"  # Python
+    volumes:
+      - ./app:/app   # コードだけマウント
+    working_dir: /app
+    command: tail -f /dev/null  # 空でも止まらない
